@@ -9,20 +9,21 @@ class BloomFilter(object):
         self.array = 0
         self.k = k
         self.m = m
+
     def _hash(self, key):
+        # use a deterministic RNG
         r = random.Random(key)
-        for i in range(self.k):
+        for _ in range(self.k):
             yield r.randint(0, self.m)
+
     def add(self, key):
-        for h in self._hash(key):
-            self._set_bit(h)
+        for i in self._hash(key):
+            self.array |= 1 << i
+
     def __contains__(self, key):
         bits = self._hash(key)
-        return all(self._check_bit(bit) for bit in bits)
-    def _check_bit(self, i):
-        return bool(1 & (self.array >> i))
-    def _set_bit(self, i):
-        self.array |= 1 << i
+        return all(1 & (self.array >> i) for i in bits)
+
     def __repr__(self):
         return bin(self.array)
 
