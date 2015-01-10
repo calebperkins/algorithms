@@ -1,17 +1,33 @@
 # A basic implementation of merge sort - https://en.wikipedia.org/wiki/Merge_sort
-# Uses O(log n) stack space and O(n) storage space
-# TODO use bottom-up iterative merging instead of recursion, and optimize space usage
+# Uses O(n) storage space
 # TODO allocate a work array at beginning instead of smaller, more frequent allocations
-def mergesort(array):
-    return _mergesort(array, 0, len(array) - 1)
+# and optimize space usage
 
-def _mergesort(array, left, right):
+# A recursive implementation
+def mergesort_rec(array, left=0, right=None):
+    if right is None:
+        right = len(array) - 1
+
     if left == right:
         return [array[left]]
     m = (left + right) // 2
-    sleft = _mergesort(array, left, m)
-    sright = _mergesort(array, m + 1, right)
+    sleft = mergesort_rec(array, left, m)
+    sright = mergesort_rec(array, m + 1, right)
     return _merge(sleft, sright)
+
+# A bottom-up, iterative implementation
+def mergesort(array):
+    w = 1
+    while w <= len(array):
+        for i in range(0, len(array), 2 * w):
+            a = array[i : i + w]
+            b = array[i + w : i + 2 * w]
+            merged = _merge(a, b)
+
+            # write sorted, merged array over original array
+            for j, v in enumerate(merged):
+                array[i + j] = v
+        w *= 2
 
 def _merge(sleft, sright):
     i = j = 0
@@ -36,5 +52,5 @@ if __name__ == '__main__':
     import random
     seq = [random.randint(-10,10) for n in range(20)]
     print("Unsorted", seq)
-    seq = mergesort(seq)
+    mergesort(seq)
     print("Sorted", seq)
