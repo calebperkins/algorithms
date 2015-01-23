@@ -16,9 +16,9 @@ def _pow(x, n):
     return y
 
 if __name__ == '__main__':
-    print _pow(34.00515, -3)
-    print pow(34.00515, -3)
-    print pow(8.88023, 3)
-    print _pow(8.88023, 3)
-    print pow(8.84372, 10)
-    print _pow(8.84372, 10)
+    print(_pow(34.00515, -3))
+    print(pow(34.00515, -3))
+    print(pow(8.88023, 3))
+    print(_pow(8.88023, 3))
+    print(pow(8.84372, 10))
+    print(_pow(8.84372, 10))
