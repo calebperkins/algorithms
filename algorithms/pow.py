@@ -2,6 +2,8 @@
 
 # using O(log n) time, O(log n) space
 # TODO can this be written without recursion, using O(1) space?
+
+
 def _pow(x, n):
     if n == 0:
         return 1

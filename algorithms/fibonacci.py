@@ -9,17 +9,13 @@ def fibonacci():
         b = c
         yield c
 
+
 def index(f):
     "Given a Fibonacci number return its position in the stream."
-    fibs = fibonacci()
     i = 0
-    while True:
-        n = next(fibs)
+    for n in fibonacci():
         if f == n:
             return i
         if n > f:
             raise ValueError(str(f) + " is not a fibonacci number")
         i += 1
-
-if __name__ == '__main__':
-    assert index(13) == 5

@@ -4,7 +4,9 @@
 
 import random
 
+
 class BloomFilter(object):
+
     def __init__(self, m, k):
         self.array = 0
         self.k = k
@@ -26,13 +28,3 @@ class BloomFilter(object):
 
     def __repr__(self):
         return bin(self.array)
-
-if __name__ == '__main__':
-    f = BloomFilter(18, 3)
-    assert "hello" not in f
-    f.add("hello")
-    assert "hello" in f
-    print(f)
-    f.add("hell")
-    assert "hell" in f
-    print(f)

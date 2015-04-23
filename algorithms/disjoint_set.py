@@ -3,8 +3,11 @@
 
 import collections
 
+
 class DisjointSet(object):
+
     """A data structure for Union-Find."""
+
     def __init__(self, elements):
         self.members = {e: DisjointSet.Node() for e in elements}
 
@@ -26,15 +29,19 @@ class DisjointSet(object):
         return cc.values()
 
     class Node(object):
+
         """Internal class for carrying parent information"""
+
         def __init__(self):
             self.rank = 0
             self.parent = None
+
         def root(self):
             # recursive with path compression
             if self.parent is not None:
                 self.parent = self.parent.root()
             return self if self.parent is None else self.parent
+
         def union(self, other):
             if self is other:
                 return
@@ -46,11 +53,3 @@ class DisjointSet(object):
             else:
                 other.parent = self
                 self.rank += 1
-
-if __name__ == '__main__':
-    s = [1, 2, 3, 4, 5]
-    ds = DisjointSet(s)
-    print(ds.connected_components())
-    ds.union(1, 2)
-    ds.union(1, 3)
-    print(ds.connected_components())

@@ -6,6 +6,8 @@ https://oj.leetcode.com/problems/gray-code/
 """
 
 # Recursive version
+
+
 def _gray_code(n):
     if n == 0:
         return [0]
@@ -18,6 +20,8 @@ def _gray_code(n):
     return last
 
 # Iterative version
+
+
 def gray_code(n):
     m = 0
     code = [0]
@@ -31,8 +35,3 @@ def gray_code(n):
         m += 1
         length *= 2
     return code
-
-if __name__ == '__main__':
-    code = gray_code(4)
-    for c in gray_code(4):
-        print("{0:04b}".format(c))

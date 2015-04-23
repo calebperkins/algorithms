@@ -2,9 +2,12 @@
 Convert an integer into a Roman numeral.
 """
 
-numerals = {1: "I", 5: "V", 10: "X", 50: "L", 100: "C", 500: "D", 1000: "M", 4: "IV", 9: "IX", 40: "XL", 90: "XC", 400: "CD", 900: "CM"}
+numerals = {1: "I", 5: "V", 10: "X", 50: "L", 100: "C", 500: "D",
+            1000: "M", 4: "IV", 9: "IX", 40: "XL", 90: "XC", 400: "CD", 900: "CM"}
 
 # Recursive version
+
+
 def to_roman_rec(n):
     if n == 0:
         return ""
@@ -13,6 +16,8 @@ def to_roman_rec(n):
     return numerals[l] + to_roman_rec(n - l)
 
 # Iterative version
+
+
 def to_roman(n):
     acc = []
     while n > 0:
