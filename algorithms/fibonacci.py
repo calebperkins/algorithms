@@ -1,8 +1,10 @@
 def fibonacci():
-    "A lazy stream of Fibonacci numbers."
+    "A lazy stream of Fibonacci numbers starting at 0 (0, 1, 1, 2, 3, 5, ...)."
     a = 0
     b = 1
 
+    yield a
+    yield b
     while True:
         c = a + b
         a = b
@@ -12,10 +14,10 @@ def fibonacci():
 
 def index(f):
     "Given a Fibonacci number return its position in the stream."
-    i = 0
-    for n in fibonacci():
+    if f < 0:
+        raise ValueError("%d is not a fibonacci number" % f)
+    for i, n in enumerate(fibonacci()):
         if f == n:
             return i
         if n > f:
-            raise ValueError(str(f) + " is not a fibonacci number")
-        i += 1
+            raise ValueError("%d is not a fibonacci number" % f)
