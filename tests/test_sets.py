@@ -12,10 +12,14 @@ def test_power_set():
 
 
 def test_permute():
-    c1 = list(permute([1, 2, 3, 4]))
-    assert len(c1) == 24
-    c2 = list(permute([]))
-    assert len(c2) == 0
+    c0 = list(permute([]))
+    assert len(c0) == 0
+    c1 = list(permute(["x"]))
+    assert len(c1) == 1
+    c2 = list(permute([7, 34]))
+    assert len(c2) == 2
+    c24 = set("".join(perm) for perm in permute(["a", "b", "c", "d"]))
+    assert len(c24) == 24
 
 
 def test_disjoint_set():
@@ -28,7 +32,10 @@ def test_disjoint_set():
 
 
 def test_fibonacci():
-    assert fibonacci.index(13) == 5
+    fib = fibonacci.fibonacci()
+    take10 = [next(fib) for i in range(10)]
+    assert take10 == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+    assert fibonacci.index(13) == 7
 
 
 def test_gray_code():

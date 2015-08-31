@@ -2,14 +2,11 @@ def fibonacci():
     "A lazy stream of Fibonacci numbers starting at 0 (0, 1, 1, 2, 3, 5, ...)."
     a = 0
     b = 1
-
-    yield a
-    yield b
     while True:
+        yield a
         c = a + b
         a = b
         b = c
-        yield c
 
 
 def index(f):
