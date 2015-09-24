@@ -29,8 +29,8 @@ def mergesort(array):
             merged = _merge(a, b)
 
             # write sorted, merged array over original array
-            for j, v in enumerate(merged):
-                array[i + j] = v
+            for j, v in enumerate(merged, i):
+                array[j] = v
         w *= 2
 
 
