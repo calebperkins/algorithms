@@ -1,8 +1,12 @@
-# Given an input sequence, generate all permutations of that sequence.
 def permute(sequence):
+    "Given an input sequence, generate all permutations of that sequence."
+    if not sequence:
+        return
     if len(sequence) == 1:
         yield sequence
-    for i in range(len(sequence)):
-        sequence[0], sequence[i] = sequence[i], sequence[0]
-        for subseq in permute(sequence[1:]):
-            yield [sequence[0]] + subseq
+        return
+    for subseq in permute(sequence[1:]):
+        for i in range(len(sequence)):
+            copy = list(subseq)
+            copy.insert(i, sequence[0])
+            yield copy
