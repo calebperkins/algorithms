@@ -1,12 +1,16 @@
 from algorithms.bloom_filter import *
+import unittest
 
 
-def test_filter():
-    f = BloomFilter(18, 3)
-    assert "hello" not in f
-    f.add("hello")
-    assert "hello" in f
-    print(f)
-    f.add("hell")
-    assert "hell" in f
-    print(f)
+class BloomFilterTestCase(unittest.TestCase):
+    def test_filter(self):
+        f = BloomFilter(18, 3)
+        self.assertNotIn("hello", f)
+        f.add("hello")
+        self.assertIn("hello", f)
+        f.add("hell")
+        self.assertIn("hello", f)
+
+    def test_repr(self):
+        f = BloomFilter(18, 3)
+        self.assertEqual("BloomFilter(18, 3, 0b0)", repr(f))

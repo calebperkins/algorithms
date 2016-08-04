@@ -5,26 +5,26 @@
 import random
 
 
-class BloomFilter(object):
+class BloomFilter:
 
-    def __init__(self, m, k):
-        self.array = 0
-        self.k = k
-        self.m = m
+    def __init__(self, m, k, array=0):
+        self._m = m
+        self._k = k
+        self._array = array
 
     def _hash(self, key):
         # use a deterministic RNG
         r = random.Random(key)
-        for _ in range(self.k):
-            yield r.randint(0, self.m)
+        for _ in range(self._k):
+            yield r.randint(0, self._m)
 
     def add(self, key):
         for i in self._hash(key):
-            self.array |= 1 << i
+            self._array |= 1 << i
 
     def __contains__(self, key):
         bits = self._hash(key)
-        return all(1 & (self.array >> i) for i in bits)
+        return all(self._array & (1 << i) for i in bits)
 
     def __repr__(self):
-        return bin(self.array)
+        return "BloomFilter(%d, %d, %s)" % (self._m, self._k, bin(self._array))
