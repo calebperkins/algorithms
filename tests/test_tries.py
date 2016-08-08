@@ -1,14 +1,16 @@
 from algorithms.tries import *
+import unittest
 
 
-def test_trie():
-    t = TrieMap()
-    assert "hello" not in t
-    t["hello"] = "world"
-    assert "hello" in t
-    assert "hell" not in t
-    assert t["hello"] == "world"
-    t["hellos"] = "pork"
-    x = list(t.by_prefix("hell"))
-    assert "world" in x
-    assert "pork" in x
+class TrieTestCase(unittest.TestCase):
+    def test_trie(self):
+        t = TrieMap()
+        self.assertNotIn("hello", t)
+        t["hello"] = "world"
+        self.assertIn("hello", t)
+        self.assertNotIn("hell", t)
+        self.assertEqual(t["hello"], "world")
+        t["hellos"] = "pork"
+        x = list(t.by_prefix("hell"))
+        self.assertIn("world", x)
+        self.assertIn("pork", x)
