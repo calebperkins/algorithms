@@ -14,6 +14,20 @@ class TrieMap(object):
             trie = trie.chars[c]
         return trie._terminates()
 
+    def __delitem__(self, key):
+        trie = self
+        parent = None
+        for c in key:
+            if not c in trie.chars:
+                return
+            parent = trie
+            trie = trie.chars[c]
+        if trie.chars:
+            trie.value = None
+        else:
+            del parent.chars[key[-1]]
+
+
     def __setitem__(self, key, value):
         trie = self
         for c in key:
