@@ -6,16 +6,16 @@ class TreeNode:
         self.right = None
 
 
-def preorder(bst):
+def preorder(bt):
     "A preorder traversal of a binary tree"
-    children = [bst]
+    children = [bt]
     while children:
-        bst = children.pop()
-        if bst.right:
-            children.append(bst.right)
-        if bst.left:
-            children.append(bst.left)
-        yield bst.val
+        n = children.pop()
+        if n.right:
+            children.append(n.right)
+        if n.left:
+            children.append(n.left)
+        yield n.val
 
 
 def inorder(bst):
