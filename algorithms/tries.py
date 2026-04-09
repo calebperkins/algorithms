@@ -1,15 +1,17 @@
-class TrieMap(object):
+from __future__ import annotations
 
+
+class TrieMap:
     """A map based on a prefix tree."""
 
     def __init__(self):
-        self.chars = {}
-        self.value = None
+        self.chars: dict[str, TrieMap] = {}
+        self.value: str | None = None
 
     def __contains__(self, key):
         trie = self
         for c in key:
-            if not c in trie.chars:
+            if c not in trie.chars:
                 return False
             trie = trie.chars[c]
         return trie._terminates()
@@ -17,7 +19,7 @@ class TrieMap(object):
     def __setitem__(self, key, value):
         trie = self
         for c in key:
-            if not c in trie.chars:
+            if c not in trie.chars:
                 trie.chars[c] = TrieMap()
             trie = trie.chars[c]
         trie.value = value
@@ -28,7 +30,7 @@ class TrieMap(object):
     def by_prefix(self, prefix):
         trie = self
         for c in prefix:
-            if not c in trie.chars:
+            if c not in trie.chars:
                 return []
             trie = trie.chars[c]
 
@@ -50,12 +52,11 @@ class TrieMap(object):
         return repr(self.chars)
 
 
-class TrieSet(object):
-
+class TrieSet:
     """A set interface over a TrieMap."""
 
     def __init__(self):
-        self.trie = TrieMap()
+        self.trie: TrieMap = TrieMap()
 
     def __contains__(self, x):
         return x in self.trie
