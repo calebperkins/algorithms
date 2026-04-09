@@ -1,14 +1,14 @@
-# An in-place quicksort.
-# http://en.wikipedia.org/wiki/Quicksort
+"""
+An in-place quicksort.
+http://en.wikipedia.org/wiki/Quicksort
+"""
 
-import random
 
-
-def quicksort(array):
+def quicksort(array: list[object]):
     _quicksort(array, 0, len(array) - 1)
 
 
-def _quicksort(array, left, right):
+def _quicksort(array: list[object], left: int, right: int):
     if left >= right:
         return
 
@@ -17,7 +17,7 @@ def _quicksort(array, left, right):
     _quicksort(array, s_i + 1, right)
 
 
-def _partition(array, left, right):
+def _partition(array: list[object], left: int, right: int):
     p_i = _choose_pivot(array, left, right)
     p = array[p_i]
     array[p_i], array[right] = array[right], array[p_i]
@@ -33,13 +33,7 @@ def _partition(array, left, right):
     return s_i
 
 
-def _choose_pivot(array, left, right):
+def _choose_pivot(array: list[object], left: int, right: int) -> int:
     # Use the middle as the pivot. You could also use a strategy based on
     # randomization, averaging, etc
     return (left + right) // 2
-
-if __name__ == '__main__':
-    seq = [random.randint(-10, 10) for n in range(20)]
-    print("Unsorted", seq)
-    quicksort(seq)
-    print("Sorted", seq)
