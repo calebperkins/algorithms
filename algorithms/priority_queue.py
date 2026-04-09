@@ -1,15 +1,22 @@
 import heapq
+import typing
+
+T = typing.TypeVar("T")
 
 
-class PriorityQueue:
+class PriorityQueue(typing.Generic[T]):
     def __init__(self):
-        self._heap = []
+        self._heap: list[T] = []
 
-    def push(self, item):
+    def push(self, item: T):
         heapq.heappush(self._heap, item)
 
-    def pop(self):
+    def pop(self) -> T:
         return heapq.heappop(self._heap)
 
-    def peek(self):
-        return self._heap[0]
+    def peek(self) -> T | None:
+        if self._heap:
+            return self._heap[0]
+
+    def __bool__(self) -> bool:
+        return bool(self._heap)
