@@ -10,9 +10,9 @@ class Node:
     rgt: Node | None = None
 
 
-def preorder(bt: Node) -> Iterator[Node]:
+def preorder(node: Node) -> Iterator[Node]:
     "A preorder traversal of a binary tree."
-    children = [bt]
+    children = [node]
     while children:
         n = children.pop()
         if n.rgt:
@@ -22,23 +22,23 @@ def preorder(bt: Node) -> Iterator[Node]:
         yield n.val
 
 
-def inorder(bst: Node) -> Iterator[Node]:
+def inorder(node: Node) -> Iterator[Node]:
     "An inorder traversal of a binary tree."
-    parents = []
+    parents: list[Node] = []
 
-    def traverse_left(n):
+    def traverse_left(n: Node | None):
         while n is not None:
             parents.append(n)
             n = n.lft
 
-    traverse_left(bst)
+    traverse_left(node)
     while parents:
-        bst = parents.pop()
-        yield bst.val
-        traverse_left(bst.rgt)
+        n = parents.pop()
+        yield n.val
+        traverse_left(n.rgt)
 
 
-def postorder(root: Node) -> Iterator[Node]:
+def postorder(node: Node) -> Iterator[Node]:
     "A postorder traversal of a binary tree."
     # if root.lft:
     #     for n in postorder(root.lft):
@@ -74,17 +74,17 @@ def postorder(root: Node) -> Iterator[Node]:
     #         s.pop()
     #     prev = c
 
-    s = []
-    prev = None
-    current = root
-    while s or current:
+    stack: list[Node] = []
+    prev: Node | None = None
+    current: Node | None = node
+    while stack or current:
         if current:
-            s.append(current)
+            stack.append(current)
             current = current.lft
         else:
-            p = s[-1]
+            p = stack[-1]
             if p.rgt and prev is not p.rgt:
                 current = p.rgt
             else:
                 yield p.val
-                prev = s.pop()
+                prev = stack.pop()
