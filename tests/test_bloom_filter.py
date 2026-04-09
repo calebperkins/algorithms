@@ -2,7 +2,7 @@ from algorithms.bloom_filter import BloomFilter
 
 
 def test_filter():
-    f = BloomFilter(18, 3)
+    f = BloomFilter[str](18, 3)
     assert "hello" not in f
     f.add("hello")
     assert "hello" in f

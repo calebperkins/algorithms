@@ -1,7 +1,12 @@
 import random
 
+from collections.abc import Iterable
+from typing import TypeVar, Generic
 
-class BloomFilter:
+T = TypeVar("T")
+
+
+class BloomFilter(Generic[T]):
     """
     https://en.wikipedia.org/wiki/Bloom_filter
 
@@ -11,22 +16,22 @@ class BloomFilter:
 
     def __init__(self, m: int, k: int, array: int = 0):
         self._m: int = m
-        self._k: int = k
+        self._hashes: int = k
         self._array: int = array
 
-    def _hash(self, key: int):
+    def _hash(self, elem: T) -> Iterable[int]:
         # use a deterministic RNG
-        r = random.Random(key)
-        for _ in range(self._k):
+        r = random.Random(elem)
+        for _ in range(self._hashes):
             yield r.randint(0, self._m)
 
-    def add(self, key: int):
-        for i in self._hash(key):
+    def add(self, elem: T):
+        for i in self._hash(elem):
             self._array |= 1 << i
 
-    def __contains__(self, key: int) -> bool:
-        bits = self._hash(key)
+    def __contains__(self, elem: T) -> bool:
+        bits = self._hash(elem)
         return all(self._array & (1 << i) for i in bits)
 
     def __repr__(self) -> str:
-        return "BloomFilter(%d, %d, %s)" % (self._m, self._k, bin(self._array))
+        return "BloomFilter(%d, %d, %s)" % (self._m, self._hashes, bin(self._array))
