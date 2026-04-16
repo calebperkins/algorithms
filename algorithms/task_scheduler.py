@@ -40,6 +40,6 @@ def schedule(tasks: list[Task]) -> list[str]:
                 ready.append(succ)
 
     if len(output) < len(tasks):
-        raise ValueError("cycle")
+        raise ValueError("cycle detected")
 
     return output

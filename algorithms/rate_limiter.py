@@ -32,7 +32,7 @@ class DistributedRateLimiter:
     def __init__(self, max_requests: int, window_seconds: int) -> None:
         self._max_requests = max_requests
         self._window_seconds = window_seconds
-        self._user_requests: dict[str, SortedList] = defaultdict(SortedList)
+        self._user_requests: dict[str, SortedList[int]] = defaultdict(SortedList)
 
     def allow(self, user_id: str, timestamp: int) -> bool:
         # the _accepted_ requests
