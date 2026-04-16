@@ -3,3 +3,6 @@ packaging==26.0
 pluggy==1.6.0
 Pygments==2.20.0
 pytest==9.0.3
+sortedcontainers==2.4.0
+sortedcontainers-stubs==2.4.3
+typing_extensions==4.15.0
