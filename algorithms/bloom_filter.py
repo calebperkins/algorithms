@@ -1,7 +1,6 @@
 import random
-
 from collections.abc import Iterable
-from typing import TypeVar, Generic
+from typing import Generic, TypeVar
 
 T = TypeVar("T")
 
@@ -21,7 +20,7 @@ class BloomFilter(Generic[T]):
 
     def _hash(self, elem: T) -> Iterable[int]:
         # use a deterministic RNG
-        r = random.Random(elem)
+        r = random.Random(hash(elem))
         for _ in range(self._hashes):
             yield r.randint(0, self._m)
 
