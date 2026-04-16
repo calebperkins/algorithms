@@ -1,4 +1,4 @@
-from algorithms.cache import LRUCache
+from algorithms.collections.cache import LRUCache
 
 
 def test_small():

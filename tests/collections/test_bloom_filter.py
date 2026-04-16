@@ -1,4 +1,4 @@
-from algorithms.bloom_filter import BloomFilter
+from algorithms.collections.bloom_filter import BloomFilter
 
 
 def test_filter():

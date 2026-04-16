@@ -1,4 +1,4 @@
-from algorithms.tries import TrieMap
+from algorithms.collections.tries import TrieMap
 
 
 def test_trie():

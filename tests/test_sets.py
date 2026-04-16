@@ -1,8 +1,7 @@
-from algorithms.power_set import power_set
-from algorithms.permutations import permute
-from algorithms.disjoint_set import DisjointSet
 from algorithms import fibonacci
 from algorithms.gray_code import gray_code
+from algorithms.permutations import permute
+from algorithms.power_set import power_set
 
 
 def test_power_set():
@@ -22,15 +21,6 @@ def test_permute():
     assert len(c24) == 24
 
 
-def test_disjoint_set():
-    s = [1, 2, 3, 4, 5]
-    ds = DisjointSet(s)
-    assert len(ds.connected_components()) == 5
-    ds.union(1, 2)
-    ds.union(1, 3)
-    assert len(ds.connected_components()) == 3
-
-
 def test_fibonacci():
     fib = fibonacci.fibonacci()
     take10 = [next(fib) for i in range(10)]
@@ -39,6 +29,5 @@ def test_fibonacci():
 
 
 def test_gray_code():
-    code = gray_code(4)
     for c in gray_code(4):
         print("{0:04b}".format(c))

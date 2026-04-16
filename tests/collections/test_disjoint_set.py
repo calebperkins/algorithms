@@ -1,4 +1,4 @@
-from algorithms.disjoint_set import DisjointSet
+from algorithms.collections.disjoint_set import DisjointSet
 
 
 def test_connected_components():
