@@ -1,4 +1,4 @@
-from algorithms.roman import to_roman
+from algorithms.numeric.roman import to_roman
 
 
 def test_numerals():

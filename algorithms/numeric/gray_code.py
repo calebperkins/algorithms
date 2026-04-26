@@ -5,7 +5,8 @@ https://en.wikipedia.org/wiki/Gray_code
 https://oj.leetcode.com/problems/gray-code/
 """
 
-def gray_code(bits):
+
+def gray_code(bits: int) -> list[int]:
     "Produce a gray code with the specified number of bits."
     m = 0
     code = [0]
