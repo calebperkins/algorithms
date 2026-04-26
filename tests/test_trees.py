@@ -1,4 +1,5 @@
-import algorithms.trees as t 
+import algorithms.trees as t
+
 
 def test_tree_traversals():
     f = t.Node("F")
@@ -11,6 +12,36 @@ def test_tree_traversals():
     f.rgt.rgt = t.Node("I")
     f.rgt.rgt.lft = t.Node("H")
 
-    assert list(t.preorder(f)) == ["F", "B", "A", "D", "C", "E", "G", "I", "H"]
-    assert list(t.inorder(f)) == ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
-    assert list(t.postorder(f)) == ["A", "C", "E", "D", "B", "H", "I", "G", "F"]
+    assert [n.val for n in t.preorder(f)] == [
+        "F",
+        "B",
+        "A",
+        "D",
+        "C",
+        "E",
+        "G",
+        "I",
+        "H",
+    ]
+    assert [n.val for n in t.inorder(f)] == [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+    ]
+    assert [n.val for n in t.postorder(f)] == [
+        "A",
+        "C",
+        "E",
+        "D",
+        "B",
+        "H",
+        "I",
+        "G",
+        "F",
+    ]

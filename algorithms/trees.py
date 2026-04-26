@@ -1,6 +1,7 @@
 from __future__ import annotations
-from dataclasses import dataclass
+
 from collections.abc import Iterator
+from dataclasses import dataclass
 
 
 @dataclass(frozen=False)
@@ -19,7 +20,7 @@ def preorder(node: Node) -> Iterator[Node]:
             children.append(n.rgt)
         if n.lft:
             children.append(n.lft)
-        yield n.val
+        yield n
 
 
 def inorder(node: Node) -> Iterator[Node]:
@@ -34,7 +35,7 @@ def inorder(node: Node) -> Iterator[Node]:
     traverse_left(node)
     while parents:
         n = parents.pop()
-        yield n.val
+        yield n
         traverse_left(n.rgt)
 
 
@@ -86,5 +87,5 @@ def postorder(node: Node) -> Iterator[Node]:
             if p.rgt and prev is not p.rgt:
                 current = p.rgt
             else:
-                yield p.val
+                yield p
                 prev = stack.pop()
