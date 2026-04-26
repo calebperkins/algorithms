@@ -1,5 +1,5 @@
-from algorithms import fibonacci
-from algorithms.gray_code import gray_code
+from algorithms.numeric import fibonacci
+from algorithms.numeric.gray_code import gray_code
 from algorithms.permutations import permute
 from algorithms.power_set import power_set
 
