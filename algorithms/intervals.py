@@ -1,6 +1,13 @@
-import collections
+from __future__ import annotations
 
-Interval = collections.namedtuple("Interval", "start, end")
+from collections.abc import Iterator
+from dataclasses import dataclass
+
+
+@dataclass
+class Interval:
+    start: int
+    end: int
 
 
 class AugmentedTree:
@@ -11,17 +18,17 @@ class AugmentedTree:
     This tree could become imbalanced. More advanced augmented trees should be a based on a self-balancing BST.
     """
 
-    def __init__(self, interval):
+    def __init__(self, interval: Interval):
         self.interval = interval
         self.high = interval.end
         self.left = None
         self.right = None
 
-    def overlaps(self, interval):
+    def overlaps(self, interval: Interval) -> bool:
         i = self.interval
         return i.end >= interval.start and i.start <= interval.end
 
-    def intersecting(self, interval):
+    def intersecting(self, interval: Interval) -> Iterator[Interval]:
         s = [self]
         while s:
             n = s.pop()
@@ -34,10 +41,10 @@ class AugmentedTree:
             if n.left:
                 s.append(n.left)
 
-    def __lt__(self, other):
+    def __lt__(self, other: AugmentedTree) -> bool:
         return self.interval.start < other.interval.start
 
-    def add(self, interval):
+    def add(self, interval: Interval) -> None:
         # Create a new node and add it to a leaf
         m = AugmentedTree(interval)
         n = self
