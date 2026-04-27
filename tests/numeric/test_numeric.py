@@ -1,6 +1,5 @@
 import pytest
 
-import algorithms.numeric as n
 from algorithms.numeric import fibonacci
 from algorithms.numeric.gray_code import gray_code
 from algorithms.numeric.pow import mypow
