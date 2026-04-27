@@ -11,11 +11,11 @@ def test_power_set():
 
 
 def test_permute():
-    c0 = list(permute([]))
+    c0 = permute([])
     assert len(c0) == 0
-    c1 = list(permute(["x"]))
+    c1 = permute(["x"])
     assert len(c1) == 1
-    c2 = list(permute([7, 34]))
+    c2 = permute([7, 34])
     assert len(c2) == 2
     c24 = set("".join(perm) for perm in permute(["a", "b", "c", "d"]))
     assert len(c24) == 24

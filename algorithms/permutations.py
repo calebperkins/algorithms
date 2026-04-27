@@ -1,8 +1,14 @@
-def permute(sequence):
+from collections.abc import Collection
+from typing import TypeVar
+
+T = TypeVar("T")
+
+
+def permute(sequence: Collection[T]) -> list[list[T]]:
     "Given an input sequence, generate all permutations of that sequence."
     if not sequence:
         return []
-    perms = [tuple()]
+    perms = [[]]
     for elem in sequence:
         next_perms = []
         for perm in perms:
@@ -13,7 +19,7 @@ def permute(sequence):
 
 
 def _add_element(sequence, elem):
-    for i in range(len(sequence) + 1): # insert elem in every position
+    for i in range(len(sequence) + 1):  # insert elem in every position
         copy = list(sequence)
         copy.insert(i, elem)
         yield copy
