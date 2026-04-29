@@ -6,20 +6,21 @@ and optimize space usage
 """
 
 
-def mergesort_rec(array, left=0, right=None):
+def mergesort_rec(array: list) -> list:
     "A recursive implementation."
-    if right is None:
-        right = len(array) - 1
 
-    if left == right:
-        return [array[left]]
-    m = (left + right) // 2
-    sleft = mergesort_rec(array, left, m)
-    sright = mergesort_rec(array, m + 1, right)
-    return _merge(sleft, sright)
+    def _mergesort(lft: int, rgt: int) -> list:
+        if lft == rgt:
+            return [array[lft]]
+        m = (lft + rgt) // 2
+        slft = _mergesort(lft, m)
+        srgt = _mergesort(m + 1, rgt)
+        return _merge(slft, srgt)
+
+    return _mergesort(0, len(array) - 1)
 
 
-def mergesort(array):
+def mergesort(array: list) -> None:
     "A bottom-up, iterative implementation."
     w = 1
     while w <= len(array):
@@ -34,20 +35,20 @@ def mergesort(array):
         w *= 2
 
 
-def _merge(sleft, sright):
-    i = j = 0
-    a = []
-    while i < len(sleft) and j < len(sright):
-        if sleft[i] > sright[j]:
-            a.append(sright[j])
-            j += 1
+def _merge(xs: list, ys: list) -> list:
+    x_i = y_i = 0
+    merged = []
+    while x_i < len(xs) and y_i < len(ys):
+        if xs[x_i] > ys[y_i]:
+            merged.append(ys[y_i])
+            y_i += 1
         else:
-            a.append(sleft[i])
-            i += 1
+            merged.append(xs[x_i])
+            x_i += 1
 
     # merge remaining list
-    r, k = (sleft, i) if j == len(sright) else (sright, j)
-    while k < len(r):
-        a.append(r[k])
-        k += 1
-    return a
+    rs, r_i = (xs, x_i) if y_i == len(ys) else (ys, y_i)
+    while r_i < len(rs):
+        merged.append(rs[r_i])
+        r_i += 1
+    return merged
