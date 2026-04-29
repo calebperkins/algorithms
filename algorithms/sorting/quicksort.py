@@ -4,11 +4,11 @@ http://en.wikipedia.org/wiki/Quicksort
 """
 
 
-def quicksort(array: list[object]):
+def quicksort(array: list):
     _quicksort(array, 0, len(array) - 1)
 
 
-def _quicksort(array: list[object], left: int, right: int):
+def _quicksort(array: list, left: int, right: int):
     if left >= right:
         return
 
@@ -17,7 +17,7 @@ def _quicksort(array: list[object], left: int, right: int):
     _quicksort(array, s_i + 1, right)
 
 
-def _partition(array: list[object], left: int, right: int):
+def _partition(array: list, left: int, right: int):
     p_i = _choose_pivot(array, left, right)
     p = array[p_i]
     array[p_i], array[right] = array[right], array[p_i]
@@ -33,7 +33,7 @@ def _partition(array: list[object], left: int, right: int):
     return s_i
 
 
-def _choose_pivot(array: list[object], left: int, right: int) -> int:
+def _choose_pivot(array: list, left: int, right: int) -> int:
     # Use the middle as the pivot. You could also use a strategy based on
     # randomization, averaging, etc
     return (left + right) // 2
