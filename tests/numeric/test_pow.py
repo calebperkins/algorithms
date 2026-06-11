@@ -22,4 +22,5 @@ def test_mypow_fractional_base():
 
 
 def test_mypow_slow():
+    # FIXME this doesn't work
     assert mypow(0.00001, 2147483647) == 32
