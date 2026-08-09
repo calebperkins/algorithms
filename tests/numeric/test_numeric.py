@@ -1,3 +1,5 @@
+import pytest
+
 from algorithms.numeric import fibonacci
 from algorithms.numeric.gray_code import gray_code
 
@@ -9,6 +11,14 @@ def test_fibonacci():
     assert fibonacci.index(13) == 7
 
 
-def test_gray_code():
-    for c in gray_code(4):
-        print("{0:04b}".format(c))
+@pytest.mark.parametrize("bits", [0, 1, 2, 3, 4, 8])
+def test_gray_code(bits):
+    code = gray_code(bits)
+
+    assert len(code) == 2**bits
+    assert sorted(code) == list(range(2**bits))
+    assert code[0] == 0
+
+    if len(code) > 1:
+        for prev, curr in zip(code, code[1:] + code[:1]):
+            assert bin(prev ^ curr).count("1") == 1
