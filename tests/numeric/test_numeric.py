@@ -21,4 +21,4 @@ def test_gray_code(bits):
 
     if len(code) > 1:
         for prev, curr in zip(code, code[1:] + code[:1]):
-            assert bin(prev ^ curr).count("1") == 1
+            assert (prev ^ curr).bit_count() == 1
