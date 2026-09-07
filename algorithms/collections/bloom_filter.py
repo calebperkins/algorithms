@@ -33,4 +33,4 @@ class BloomFilter(Generic[T]):
         return all(self._array & (1 << i) for i in bits)
 
     def __repr__(self) -> str:
-        return "BloomFilter(%d, %d, %s)" % (self._m, self._hashes, bin(self._array))
+        return f"BloomFilter({self._m}, {self._hashes}, {bin(self._array)})"

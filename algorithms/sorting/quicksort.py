@@ -3,12 +3,26 @@ An in-place quicksort.
 http://en.wikipedia.org/wiki/Quicksort
 """
 
+from collections.abc import MutableSequence
+from typing import Protocol, TypeVar
 
-def quicksort(array: list):
+from typing_extensions import Self
+
+C = TypeVar("C", bound="Comparable")
+
+
+class Comparable(Protocol):
+    def __lt__(self, other: Self, /) -> bool: ...
+
+
+T = TypeVar("T", bound=Comparable)
+
+
+def quicksort(array: MutableSequence[T]):
     _quicksort(array, 0, len(array) - 1)
 
 
-def _quicksort(array: list, left: int, right: int):
+def _quicksort(array: MutableSequence[T], left: int, right: int):
     if left >= right:
         return
 
@@ -17,7 +31,7 @@ def _quicksort(array: list, left: int, right: int):
     _quicksort(array, s_i + 1, right)
 
 
-def _partition(array: list, left: int, right: int):
+def _partition(array: MutableSequence[T], left: int, right: int):
     p_i = _choose_pivot(array, left, right)
     p = array[p_i]
     array[p_i], array[right] = array[right], array[p_i]
@@ -33,7 +47,7 @@ def _partition(array: list, left: int, right: int):
     return s_i
 
 
-def _choose_pivot(array: list, left: int, right: int) -> int:
+def _choose_pivot(array: MutableSequence[T], left: int, right: int) -> int:
     # Use the middle as the pivot. You could also use a strategy based on
     # randomization, averaging, etc
     return (left + right) // 2

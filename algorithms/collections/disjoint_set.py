@@ -1,6 +1,7 @@
 from __future__ import annotations
+
 import collections
-from typing import TypeVar, Generic
+from typing import Generic, TypeVar
 
 T = TypeVar("T")
 
@@ -28,11 +29,11 @@ class DisjointSet(Generic[T]):
 
     def connected_components(self) -> list[set[T]]:
         cc = collections.defaultdict(set)
-        for u in self.members.keys():
+        for u in self.members:
             cc[self._find(u)].add(u)
         return list(cc.values())
 
-    class Node(object):
+    class Node:
         """Internal class for carrying parent information"""
 
         def __init__(self):
