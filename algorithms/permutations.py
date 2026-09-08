@@ -12,8 +12,7 @@ def permute(sequence: Collection[T]) -> list[list[T]]:
     for elem in sequence:
         next_perms = []
         for perm in perms:
-            for next_perm in _add_element(perm, elem):
-                next_perms.append(next_perm)
+            next_perms.extend(_add_element(perm, elem))
         perms = next_perms
     return perms
 

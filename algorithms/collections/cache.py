@@ -1,5 +1,6 @@
 from collections import OrderedDict
-from typing import Mapping, TypeVar
+from collections.abc import Mapping
+from typing import TypeVar
 
 Key = TypeVar("Key")
 Value = TypeVar("Value")

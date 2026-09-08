@@ -39,8 +39,7 @@ class TrieMap:
             t = s.pop()
             if t._terminates():
                 yield t.value
-            for n in t.chars.values():
-                s.append(n)
+            s.extend(t.chars.values())
 
     def __getitem__(self, key):
         trie = self

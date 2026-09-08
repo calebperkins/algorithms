@@ -1,4 +1,4 @@
-from algorithms.intervals import Interval, AugmentedTree
+from algorithms.intervals import AugmentedTree, Interval
 
 
 def test_tree():

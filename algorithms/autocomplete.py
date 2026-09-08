@@ -30,8 +30,7 @@ def _traverse(
     while stack:
         n = stack.pop()
         yield n
-        for child in extractor(n):
-            stack.append(child)
+        stack.extend(extractor(n))
 
 
 class Autocomplete:
